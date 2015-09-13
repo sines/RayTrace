@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QStatusBar>
@@ -24,15 +25,19 @@ class Ui_RayMainWindow
 {
 public:
     QWidget *centralWidget;
+    QGraphicsView *graphicsView;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *RayMainWindow)
     {
         if (RayMainWindow->objectName().isEmpty())
             RayMainWindow->setObjectName(QStringLiteral("RayMainWindow"));
-        RayMainWindow->resize(767, 545);
+        RayMainWindow->resize(623, 434);
         centralWidget = new QWidget(RayMainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        graphicsView = new QGraphicsView(centralWidget);
+        graphicsView->setObjectName(QStringLiteral("graphicsView"));
+        graphicsView->setGeometry(QRect(10, 10, 601, 481));
         RayMainWindow->setCentralWidget(centralWidget);
         statusBar = new QStatusBar(RayMainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));

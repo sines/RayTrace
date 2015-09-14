@@ -1,29 +1,109 @@
-<UI version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>RayTraceWindowsClass</class>
- <widget class="QMainWindow" name="RayTraceWindowsClass" >
-  <property name="objectName" >
-   <string notr="true">RayTraceWindowsClass</string>
+ <widget class="QMainWindow" name="RayTraceWindowsClass">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
   </property>
-  <property name="geometry" >
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
    <rect>
-	<x>0</x>
-	<y>0</y>
-	<width>600</width>
-	<height>400</height>
+    <x>0</x>
+    <y>0</y>
+    <width>556</width>
+    <height>431</height>
    </rect>
   </property>
-  <property name="windowTitle" >
-   <string>RayTraceWindows</string>
+  <property name="contextMenuPolicy">
+   <enum>Qt::DefaultContextMenu</enum>
   </property>
-  <widget class="QMenuBar" name="menuBar" />
-  <widget class="QToolBar" name="mainToolBar" />
-  <widget class="QWidget" name="centralWidget" />
-  <widget class="QStatusBar" name="statusBar" />
+  <property name="acceptDrops">
+   <bool>false</bool>
+  </property>
+  <property name="windowTitle">
+   <string>RayWindow</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../resource/raytracewindows.qrc">
+    <normaloff>:/RayTraceWindows/images/th.png</normaloff>:/RayTraceWindows/images/th.png</iconset>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QMenuBar" name="menuBarFile">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>556</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <addaction name="actionNew"/>
+    <addaction name="actionOpen"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>编辑</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>视图</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>关于</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuView"/>
+   <addaction name="menuAbout"/>
+  </widget>
+  <action name="actionNew">
+   <property name="text">
+    <string>新建</string>
+   </property>
+   <property name="toolTip">
+    <string>文件</string>
+   </property>
+   <property name="statusTip">
+    <string>新建</string>
+   </property>
+   <property name="whatsThis">
+    <string>文件</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>打开</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>关于</string>
+   </property>
+  </action>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
  <resources>
-   <include location="raytracewindows.qrc"/>
+  <include location="../resource/raytracewindows.qrc"/>
  </resources>
  <connections/>
-</UI>
+</ui>

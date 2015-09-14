@@ -73,7 +73,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\RayTraceWindows\resource\RayTraceWindows.ico">
+    <Image Include="..\..\RayTraceWindows\resource\images\th.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

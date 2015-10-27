@@ -12,9 +12,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>556</width>
-    <height>431</height>
+    <width>613</width>
+    <height>434</height>
    </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>613</width>
+    <height>16777215</height>
+   </size>
   </property>
   <property name="contextMenuPolicy">
    <enum>Qt::DefaultContextMenu</enum>
@@ -29,19 +35,15 @@
    <iconset resource="../resource/raytracewindows.qrc">
     <normaloff>:/RayTraceWindows/images/th.png</normaloff>:/RayTraceWindows/images/th.png</iconset>
   </property>
-  <property name="documentMode">
-   <bool>false</bool>
-  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout"/>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
   <widget class="QMenuBar" name="menuBarFile">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>556</width>
+     <width>613</width>
      <height>17</height>
     </rect>
    </property>
@@ -51,11 +53,15 @@
     </property>
     <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
+    <addaction name="actionSave"/>
    </widget>
-   <widget class="QMenu" name="menuEdit">
+   <widget class="QMenu" name="menuRender">
     <property name="title">
-     <string>编辑</string>
+     <string>渲染</string>
     </property>
+    <addaction name="actionStart"/>
+    <addaction name="actionPause"/>
+    <addaction name="actionResume"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -69,9 +75,20 @@
     <addaction name="actionAbout"/>
    </widget>
    <addaction name="menuFile"/>
-   <addaction name="menuEdit"/>
+   <addaction name="menuRender"/>
    <addaction name="menuView"/>
    <addaction name="menuAbout"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="contextMenuPolicy">
+    <enum>Qt::ActionsContextMenu</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 9pt &quot;幼圆&quot;;</string>
+   </property>
+   <property name="sizeGripEnabled">
+    <bool>true</bool>
+   </property>
   </widget>
   <action name="actionNew">
    <property name="text">
@@ -94,10 +111,60 @@
    <property name="text">
     <string>打开</string>
    </property>
+   <property name="statusTip">
+    <string>打开</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
   </action>
   <action name="actionAbout">
    <property name="text">
     <string>关于</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>保存</string>
+   </property>
+   <property name="statusTip">
+    <string>保存</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionStart">
+   <property name="text">
+    <string>开始</string>
+   </property>
+   <property name="statusTip">
+    <string>开始</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionPause">
+   <property name="text">
+    <string>暂停</string>
+   </property>
+   <property name="statusTip">
+    <string>暂停</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionResume">
+   <property name="text">
+    <string>恢复</string>
+   </property>
+   <property name="statusTip">
+    <string>恢复</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
    </property>
   </action>
  </widget>

@@ -23,6 +23,8 @@ private:
 
 	private slots:
 		void newFile();
+		void openFile();
+		void About();
 };
 
 #endif // RAYTRACEWINDOWS_H

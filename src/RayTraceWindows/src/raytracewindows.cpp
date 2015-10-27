@@ -9,8 +9,12 @@ RayTraceWindows::RayTraceWindows(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
+	ui.statusBar->showMessage(tr("Ready"));
 	connect(ui.actionNew, SIGNAL(triggered()), this, SLOT(newFile()));
+	connect(ui.actionOpen, SIGNAL(triggered()), this, SLOT(openFile()));
+	connect(ui.actionAbout, SIGNAL(triggered()), this, SLOT(About()));
 }
+
 
 RayTraceWindows::~RayTraceWindows()
 {
@@ -23,6 +27,16 @@ void RayTraceWindows::newFile()
 		loadFile(fileName);
 }
 
+void RayTraceWindows::openFile()
+{
+	statusBar()->showMessage(tr("Open"), 2000);
+}
+
+void RayTraceWindows::About()
+{
+	QMessageBox::about(this, tr("About Application"),
+		tr("This <b>Application</b> describes the step-by-step process of writing a ray tracer from scratch. Using numerous examples that illustrate the ray-tracing concept and processes in detail, the author presents a ray-tracer design and sample code that allows for extensibility, efficiency of the algorithms, and readability. Chapters begin with stated aims and include questions and exercises that allow the reader to apply the material presented. "));
+}
 void RayTraceWindows::loadFile(const QString &fileName)
 //! [42] //! [43]
 {

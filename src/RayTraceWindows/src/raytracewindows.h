@@ -22,9 +22,13 @@ private:
 	void loadFile(const QString &fileName);
 
 	private slots:
+	// file
 		void newFile();
 		void openFile();
 		void About();
+
+	// render
+		void startRender();
 };
 
 #endif // RAYTRACEWINDOWS_H

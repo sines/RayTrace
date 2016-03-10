@@ -13,6 +13,28 @@ RayTraceWindows::RayTraceWindows(QWidget *parent)
 	connect(ui.actionNew, SIGNAL(triggered()), this, SLOT(newFile()));
 	connect(ui.actionOpen, SIGNAL(triggered()), this, SLOT(openFile()));
 	connect(ui.actionAbout, SIGNAL(triggered()), this, SLOT(About()));
+	connect(ui.actionStart, SIGNAL(triggered()), this, SLOT(startRender()));
+
+	// default
+	QImage* img = new QImage;
+	if (!img->load("../../../media/image/desktop.jpg")) //加载图像
+	{
+		QMessageBox::information(this,
+			QString::fromLocal8Bit("打开图像失败"),
+			QString::fromLocal8Bit("打开图像失败!"));
+		delete img;
+		return;
+	}
+	float oriwidth = img->width() / 2;
+	float oriheight = img->height() / 2;
+	QImage scaled_img = img->scaled(oriwidth, oriheight, Qt::IgnoreAspectRatio);
+/*
+	QPixmap pix;
+	pix.load("../../../media/image/desktop.jpg");
+
+	pix = pix.scaled(oriwidth, oriwidth, Qt::KeepAspectRatio);
+	ui.renderImage->setPixmap(pix);*/
+	ui.renderImage->setPixmap(QPixmap::fromImage(scaled_img));
 }
 
 
@@ -32,10 +54,15 @@ void RayTraceWindows::openFile()
 	statusBar()->showMessage(tr("Open"), 2000);
 }
 
+void RayTraceWindows::startRender()
+{
+
+}
+
 void RayTraceWindows::About()
 {
 	QMessageBox::about(this, tr("About Application"),
-		tr("This <b>Application</b> describes the step-by-step process of writing a ray tracer from scratch. Using numerous examples that illustrate the ray-tracing concept and processes in detail, the author presents a ray-tracer design and sample code that allows for extensibility, efficiency of the algorithms, and readability. Chapters begin with stated aims and include questions and exercises that allow the reader to apply the material presented. "));
+		QString::fromLocal8Bit("实现自<<射线跟踪算法>>系列书籍 "));
 }
 void RayTraceWindows::loadFile(const QString &fileName)
 //! [42] //! [43]

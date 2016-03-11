@@ -4,6 +4,8 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_raytracewindows.h"
+#include "World.h"
+#include "RenderThread.h"
 
 class RayTraceWindows : public QMainWindow
 {
@@ -29,6 +31,10 @@ private:
 
 	// render
 		void startRender();
+
+protected:
+	World* world;
+	RenderThread* renderThread;
 };
 
 #endif // RAYTRACEWINDOWS_H

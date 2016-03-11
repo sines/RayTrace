@@ -3,7 +3,8 @@
 //	This C++ code is licensed under the GNU General Public License Version 2.
 //	See the file COPYING.txt for the full license.
 
-// This file contains the definition of the class sphere
+
+// This file contains the definition of the class sphere
 
 #include "Sphere.h"
 #include "math.h"
@@ -112,4 +113,4 @@ Sphere::hit(const Ray& ray, double& tmin, ShadeRec& sr) const {
 
 
 
-
+

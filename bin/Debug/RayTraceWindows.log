@@ -1,0 +1,16 @@
+﻿生成启动时间为 2016/3/11 20:46:15。
+     1>项目“E:\WorkLaby\RayWindows\RayTrace\src\pbrt.vs2013\RayTraceWindows\RayTraceWindows.vcxproj”在节点 2 上(Build 个目标)。
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\..\..\bin\\RayTraceWindows.exe" /NOLOGO /LIBPATH:D:\Qt\Qt5.5.0\5.5\msvc2013\lib /LIBPATH:..\..\..\lib qtmaind.lib Qt5Cored.lib Qt5Guid.lib Qt5Widgetsd.lib Qt5Quick.lib RayTraceLib.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\..\..\bin\RayTraceWindows.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\..\..\bin\RayTraceWindows.lib" /MACHINE:X86 /SAFESEH ..\..\..\bin\Debug\RayTraceWindows.res
+         ..\..\..\bin\Debug\main.obj
+         ..\..\..\bin\Debug\raytracewindows.obj
+         ..\..\..\bin\Debug\RenderThread.obj
+         ..\..\..\bin\Debug\moc_raytracewindows.obj
+         ..\..\..\bin\Debug\qrc_raytracewindows.obj
+     1>RayTraceLib.lib(RGBColor.obj) : warning LNK4075: 忽略“/EDITANDCONTINUE”(由于“/SAFESEH”规范)
+         RayTraceWindows.vcxproj -> E:\WorkLaby\RayWindows\RayTrace\src\pbrt.vs2013\RayTraceWindows\..\..\..\bin\RayTraceWindows.exe
+     1>已完成生成项目“E:\WorkLaby\RayWindows\RayTrace\src\pbrt.vs2013\RayTraceWindows\RayTraceWindows.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:00.40

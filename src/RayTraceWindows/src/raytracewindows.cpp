@@ -4,9 +4,10 @@
 #include <QTextEdit>
 #include <QTextStream>
 #include <QFileDialog>
-
+#include <QtQuick/QSGGeometry>
+#include <QtQuick/QSGGeometryNode>
 RayTraceWindows::RayTraceWindows(QWidget *parent)
-	: QMainWindow(parent)
+	: QMainWindow(parent), world(NULL), renderThread(NULL)
 {
 	ui.setupUi(this);
 	ui.statusBar->showMessage(tr("Ready"));
@@ -28,12 +29,6 @@ RayTraceWindows::RayTraceWindows(QWidget *parent)
 	float oriwidth = img->width() / 2;
 	float oriheight = img->height() / 2;
 	QImage scaled_img = img->scaled(oriwidth, oriheight, Qt::IgnoreAspectRatio);
-/*
-	QPixmap pix;
-	pix.load("../../../media/image/desktop.jpg");
-
-	pix = pix.scaled(oriwidth, oriwidth, Qt::KeepAspectRatio);
-	ui.renderImage->setPixmap(pix);*/
 	ui.renderImage->setPixmap(QPixmap::fromImage(scaled_img));
 }
 
@@ -41,6 +36,11 @@ RayTraceWindows::RayTraceWindows(QWidget *parent)
 RayTraceWindows::~RayTraceWindows()
 {
 
+	if (world != NULL)
+		delete world;
+
+	if (renderThread != NULL)
+		delete renderThread;
 }
 void RayTraceWindows::newFile()
 {
@@ -56,6 +56,40 @@ void RayTraceWindows::openFile()
 
 void RayTraceWindows::startRender()
 {
+	world = new World;
+	world->build();
+
+	renderThread = new RenderThread(world);
+
+	world->paintArea = renderThread;
+
+	world->render_scene();
+
+	//////////////////////////////////////////////////////////////////////////
+	QImage* img = new QImage;
+	float oriwidth = img->width() / 2;
+	float oriheight = img->height() / 2;
+	QImage scaled_img = img->scaled(oriwidth, oriheight, Qt::IgnoreAspectRatio);
+	ui.renderImage->setPixmap(QPixmap::fromImage(scaled_img));
+
+	float vertexCount = renderThread->getPixel()->size();
+	QSGGeometry* qsg = new QSGGeometry(QSGGeometry::defaultAttributes_ColoredPoint2D(), vertexCount);
+	int index = 0;
+
+	for (vector<RenderPixel*>::iterator it = renderThread->pixels.begin(); it != renderThread->pixels.end(); ++it)
+	{
+		qsg->vertexDataAsColoredPoint2D()[index].set((*it)->x, (*it)->y, (*it)->red, (*it)->green, (*it)->blue, 0);
+		index++;
+	}
+	QByteArray photo;
+	QDataStream ds(&photo, QIODevice::WriteOnly);
+	uchar * data = static_cast<uchar *>(qsg->vertexData());
+	for (int i = 0; i < qsg->vertexCount(); i++)
+	{
+		ds << data++;
+	}
+	bool readimage = img->loadFromData(photo);
+	ui.renderImage->setPixmap(QPixmap::fromImage(scaled_img));
 
 }
 

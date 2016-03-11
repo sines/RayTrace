@@ -1,9 +1,35 @@
-﻿生成启动时间为 2016/3/10 22:53:23。
-     1>项目“E:\WorkLaby\RayTrace\src\pbrt.vs2013\RayTraceLib\RayTraceLib.vcxproj”在节点 2 上(Build 个目标)。
-     1>Link:
-         RayTraceLib.vcxproj -> E:\WorkLaby\RayTrace\src\pbrt.vs2013\RayTraceLib\..\..\..\lib\RayTraceLib.dll
-     1>已完成生成项目“E:\WorkLaby\RayTrace\src\pbrt.vs2013\RayTraceLib\RayTraceLib.vcxproj”(Build 个目标)的操作。
+﻿生成启动时间为 2016/3/11 20:46:12。
+     1>项目“E:\WorkLaby\RayWindows\RayTrace\src\pbrt.vs2013\RayTraceLib\RayTraceLib.vcxproj”在节点 2 上(Build 个目标)。
+     1>Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"..\..\..\lib\RayTraceLib.lib" /NOLOGO Debug\GeometricObject.obj
+         Debug\Plane.obj
+         Debug\Sphere.obj
+         Debug\Material.obj
+         Debug\RayTraceLib.obj
+         Debug\Hammersley.obj
+         Debug\Jittered.obj
+         Debug\MultiJittered.obj
+         Debug\NRooks.obj
+         Debug\PureRandom.obj
+         Debug\Regular.obj
+         Debug\Sampler.obj
+         Debug\SingleSphere.obj
+         Debug\Tracer.obj
+         Debug\BBox.obj
+         Debug\Maths.obj
+         Debug\Matrix.obj
+         Debug\Normal.obj
+         Debug\Point2D.obj
+         Debug\Point3D.obj
+         Debug\Ray.obj
+         Debug\RGBColor.obj
+         Debug\ShadeRec.obj
+         Debug\Vector3D.obj
+         Debug\ViewPlane.obj
+         Debug\World.obj
+         RayTraceLib.vcxproj -> E:\WorkLaby\RayWindows\RayTrace\src\pbrt.vs2013\RayTraceLib\..\..\..\lib\RayTraceLib.lib
+     1>已完成生成项目“E:\WorkLaby\RayWindows\RayTrace\src\pbrt.vs2013\RayTraceLib\RayTraceLib.vcxproj”(Build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:01.29
+已用时间 00:00:00.12

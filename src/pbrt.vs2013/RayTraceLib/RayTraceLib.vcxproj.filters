@@ -1,93 +1,189 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="源文件">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="头文件">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="资源文件">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="头文件\Utilities">
-      <UniqueIdentifier>{8be7ded3-7122-418e-8c90-804f329ec9d9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\Utilities">
+    <Filter Include="Utilities">
       <UniqueIdentifier>{a3939e03-1245-471e-b6f5-a987f2039beb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World">
+      <UniqueIdentifier>{014a3b3d-5b13-4990-9ba9-cd739e3186b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Samplers">
+      <UniqueIdentifier>{be8caa88-760d-4859-a564-4a25228e561a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Geometric Objects">
+      <UniqueIdentifier>{b02364ae-c363-4576-91e9-da81a5571627}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Materials">
+      <UniqueIdentifier>{f04ef65a-d1b8-49eb-8dc4-0a966c827130}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tracers">
+      <UniqueIdentifier>{f76952e8-3d27-4f36-b32a-91130f209b10}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\RayTraceLib\Utilities\BBox.h">
-      <Filter>头文件\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\RayTraceLib\Utilities\Constants.h">
-      <Filter>头文件\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\RayTraceLib\Utilities\Maths.h">
-      <Filter>头文件\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\RayTraceLib\Utilities\Matrix.h">
-      <Filter>头文件\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\RayTraceLib\Utilities\Normal.h">
-      <Filter>头文件\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\RayTraceLib\Utilities\ply.h">
-      <Filter>头文件\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\RayTraceLib\Utilities\Point2D.h">
-      <Filter>头文件\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\RayTraceLib\Utilities\Point3D.h">
-      <Filter>头文件\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\RayTraceLib\Utilities\Ray.h">
-      <Filter>头文件\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\RayTraceLib\Utilities\RGBColor.h">
-      <Filter>头文件\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\RayTraceLib\Utilities\ShadeRec.h">
-      <Filter>头文件\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\RayTraceLib\Utilities\Vector3D.h">
-      <Filter>头文件\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\RayTraceLib\World\ViewPlane.h">
+      <Filter>World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\RayTraceLib\World\World.h">
+      <Filter>World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\RayTraceLib\Samplers\Hammersley.h">
+      <Filter>Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\RayTraceLib\Samplers\Jittered.h">
+      <Filter>Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\RayTraceLib\Samplers\MultiJittered.h">
+      <Filter>Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\RayTraceLib\Samplers\NRooks.h">
+      <Filter>Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\RayTraceLib\Samplers\PureRandom.h">
+      <Filter>Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\RayTraceLib\Samplers\Regular.h">
+      <Filter>Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\RayTraceLib\Samplers\Sampler.h">
+      <Filter>Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\RayTraceLib\Geometric Objects\Primitives\Plane.h">
+      <Filter>Geometric Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\RayTraceLib\Geometric Objects\Primitives\Sphere.h">
+      <Filter>Geometric Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\RayTraceLib\Geometric Objects\GeometricObject.h">
+      <Filter>Geometric Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\RayTraceLib\Materials\Material.h">
+      <Filter>Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\RayTraceLib\Tracers\SingleSphere.h">
+      <Filter>Tracers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\RayTraceLib\Tracers\Tracer.h">
+      <Filter>Tracers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\RayTraceLib\RayTraceLib.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\RayTraceLib\Utilities\BBox.cpp">
-      <Filter>源文件\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\RayTraceLib\Utilities\Maths.cpp">
-      <Filter>源文件\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\RayTraceLib\Utilities\Matrix.cpp">
-      <Filter>源文件\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\RayTraceLib\Utilities\Normal.cpp">
-      <Filter>源文件\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\RayTraceLib\Utilities\Point2D.cpp">
-      <Filter>源文件\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\RayTraceLib\Utilities\Point3D.cpp">
-      <Filter>源文件\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\RayTraceLib\Utilities\Ray.cpp">
-      <Filter>源文件\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\RayTraceLib\Utilities\RGBColor.cpp">
-      <Filter>源文件\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\RayTraceLib\Utilities\ShadeRec.cpp">
-      <Filter>源文件\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\RayTraceLib\Utilities\Vector3D.cpp">
-      <Filter>源文件\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\RayTraceLib\World\ViewPlane.cpp">
+      <Filter>World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\RayTraceLib\World\World.cpp">
+      <Filter>World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\RayTraceLib\Samplers\Hammersley.cpp">
+      <Filter>Samplers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\RayTraceLib\Samplers\Jittered.cpp">
+      <Filter>Samplers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\RayTraceLib\Samplers\MultiJittered.cpp">
+      <Filter>Samplers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\RayTraceLib\Samplers\NRooks.cpp">
+      <Filter>Samplers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\RayTraceLib\Samplers\PureRandom.cpp">
+      <Filter>Samplers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\RayTraceLib\Samplers\Regular.cpp">
+      <Filter>Samplers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\RayTraceLib\Samplers\Sampler.cpp">
+      <Filter>Samplers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\RayTraceLib\Geometric Objects\Primitives\Plane.cpp">
+      <Filter>Geometric Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\RayTraceLib\Geometric Objects\Primitives\Sphere.cpp">
+      <Filter>Geometric Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\RayTraceLib\Geometric Objects\GeometricObject.cpp">
+      <Filter>Geometric Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\RayTraceLib\Materials\Material.cpp">
+      <Filter>Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\RayTraceLib\Tracers\SingleSphere.cpp">
+      <Filter>Tracers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\RayTraceLib\Tracers\Tracer.cpp">
+      <Filter>Tracers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\RayTraceLib\RayTraceLib.cpp" />
   </ItemGroup>
 </Project>

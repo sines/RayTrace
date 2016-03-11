@@ -7,13 +7,13 @@
 //	This C++ code is licensed under the GNU General Public License Version 2.
 //	See the file COPYING.txt for the full license.
 
-
 #include <vector>
 #include <math.h>
 
 #include "Point2D.h"
 #include "Point3D.h"
 #include "Maths.h"
+
 
 class Sampler {	
 	public:	
@@ -85,11 +85,11 @@ class Sampler {
 	
 		int 					num_samples;     		// the number of sample points in a set
 		int 					num_sets;				// the number of sample sets
-		vector<Point2D>			samples;				// sample points on a unit square
-		vector<int>				shuffled_indices;		// shuffled samples array indices
-		vector<Point2D>			disk_samples;			// sample points on a unit disk
-		vector<Point3D> 		hemisphere_samples;		// sample points on a unit hemisphere
-		vector<Point3D> 		sphere_samples;			// sample points on a unit sphere
+		std::vector<Point2D>			samples;				// sample points on a unit square
+		std::vector<int>				shuffled_indices;		// shuffled samples array indices
+		std::vector<Point2D>			disk_samples;			// sample points on a unit disk
+		std::vector<Point3D> 		hemisphere_samples;		// sample points on a unit hemisphere
+		std::vector<Point3D> 		sphere_samples;			// sample points on a unit sphere
 		unsigned long 			count;					// the current number of sample points used
 		int 					jump;					// random index jump
 };

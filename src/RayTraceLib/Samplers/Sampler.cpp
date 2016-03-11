@@ -7,7 +7,7 @@
 
 #include "Constants.h"
 #include "Sampler.h"
-
+using namespace std;
 // ------------------------------------------------------------------ default constructor
 	
 Sampler::Sampler(void)						

@@ -16,7 +16,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -46,10 +46,15 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\..\src\RayTraceLib;..\..\..\src\RayTraceLib\Utilities;..\..\..\src\RayTraceLib\World;..\..\..\src\RayTraceLib\Tracers;..\..\..\src\RayTraceLib\Materials;..\..\..\src\RayTraceLib\Samplers;..\..\..\src\RayTraceLib\Geometric Objects;..\..\..\src\RayTraceLib\Geometric Objects\Compound Objects;..\..\..\src\RayTraceLib\Geometric Objects\Part Objects;..\..\..\src\RayTraceLib\Geometric Objects\Triangles;..\..\..\src\RayTraceLib\Geometric Objects\Primitives;..\..\..\src\RayTraceLib\build;..\..\..\src\RayTraceWindows\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -66,6 +71,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\RayTraceLib\Geometric Objects\GeometricObject.h" />
+    <ClInclude Include="..\..\RayTraceLib\Geometric Objects\Primitives\Plane.h" />
+    <ClInclude Include="..\..\RayTraceLib\Geometric Objects\Primitives\Sphere.h" />
+    <ClInclude Include="..\..\RayTraceLib\Materials\Material.h" />
+    <ClInclude Include="..\..\RayTraceLib\RayTraceLib.h" />
+    <ClInclude Include="..\..\RayTraceLib\Samplers\Hammersley.h" />
+    <ClInclude Include="..\..\RayTraceLib\Samplers\Jittered.h" />
+    <ClInclude Include="..\..\RayTraceLib\Samplers\MultiJittered.h" />
+    <ClInclude Include="..\..\RayTraceLib\Samplers\NRooks.h" />
+    <ClInclude Include="..\..\RayTraceLib\Samplers\PureRandom.h" />
+    <ClInclude Include="..\..\RayTraceLib\Samplers\Regular.h" />
+    <ClInclude Include="..\..\RayTraceLib\Samplers\Sampler.h" />
+    <ClInclude Include="..\..\RayTraceLib\Tracers\SingleSphere.h" />
+    <ClInclude Include="..\..\RayTraceLib\Tracers\Tracer.h" />
     <ClInclude Include="..\..\RayTraceLib\Utilities\BBox.h" />
     <ClInclude Include="..\..\RayTraceLib\Utilities\Constants.h" />
     <ClInclude Include="..\..\RayTraceLib\Utilities\Maths.h" />
@@ -78,8 +97,24 @@
     <ClInclude Include="..\..\RayTraceLib\Utilities\RGBColor.h" />
     <ClInclude Include="..\..\RayTraceLib\Utilities\ShadeRec.h" />
     <ClInclude Include="..\..\RayTraceLib\Utilities\Vector3D.h" />
+    <ClInclude Include="..\..\RayTraceLib\World\ViewPlane.h" />
+    <ClInclude Include="..\..\RayTraceLib\World\World.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\RayTraceLib\Geometric Objects\GeometricObject.cpp" />
+    <ClCompile Include="..\..\RayTraceLib\Geometric Objects\Primitives\Plane.cpp" />
+    <ClCompile Include="..\..\RayTraceLib\Geometric Objects\Primitives\Sphere.cpp" />
+    <ClCompile Include="..\..\RayTraceLib\Materials\Material.cpp" />
+    <ClCompile Include="..\..\RayTraceLib\RayTraceLib.cpp" />
+    <ClCompile Include="..\..\RayTraceLib\Samplers\Hammersley.cpp" />
+    <ClCompile Include="..\..\RayTraceLib\Samplers\Jittered.cpp" />
+    <ClCompile Include="..\..\RayTraceLib\Samplers\MultiJittered.cpp" />
+    <ClCompile Include="..\..\RayTraceLib\Samplers\NRooks.cpp" />
+    <ClCompile Include="..\..\RayTraceLib\Samplers\PureRandom.cpp" />
+    <ClCompile Include="..\..\RayTraceLib\Samplers\Regular.cpp" />
+    <ClCompile Include="..\..\RayTraceLib\Samplers\Sampler.cpp" />
+    <ClCompile Include="..\..\RayTraceLib\Tracers\SingleSphere.cpp" />
+    <ClCompile Include="..\..\RayTraceLib\Tracers\Tracer.cpp" />
     <ClCompile Include="..\..\RayTraceLib\Utilities\BBox.cpp" />
     <ClCompile Include="..\..\RayTraceLib\Utilities\Maths.cpp" />
     <ClCompile Include="..\..\RayTraceLib\Utilities\Matrix.cpp" />
@@ -90,6 +125,8 @@
     <ClCompile Include="..\..\RayTraceLib\Utilities\RGBColor.cpp" />
     <ClCompile Include="..\..\RayTraceLib\Utilities\ShadeRec.cpp" />
     <ClCompile Include="..\..\RayTraceLib\Utilities\Vector3D.cpp" />
+    <ClCompile Include="..\..\RayTraceLib\World\ViewPlane.cpp" />
+    <ClCompile Include="..\..\RayTraceLib\World\World.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

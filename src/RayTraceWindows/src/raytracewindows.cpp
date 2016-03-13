@@ -5,6 +5,7 @@
 #include <QTextStream>
 #include <QFileDialog>
 #include <QPainter>
+#include <QImage>
 RayTraceWindows::RayTraceWindows(QWidget *parent)
 	: QMainWindow(parent), world(NULL), renderThread(NULL)
 {
@@ -15,6 +16,8 @@ RayTraceWindows::RayTraceWindows(QWidget *parent)
 	connect(ui.actionAbout, SIGNAL(triggered()), this, SLOT(About()));
 	connect(ui.actionStart, SIGNAL(triggered()), this, SLOT(startRender()));
 
+
+/*
 	// default
 	QImage* img = new QImage;
 	if (!img->load("../../../media/image/desktop.jpg")) //¼ÓÔØÍ¼Ïñ
@@ -25,10 +28,12 @@ RayTraceWindows::RayTraceWindows(QWidget *parent)
 		delete img;
 		return;
 	}
+
 	float oriwidth = img->width() / 2;
 	float oriheight = img->height() / 2;
 	QImage scaled_img = img->scaled(oriwidth, oriheight, Qt::IgnoreAspectRatio);
 	ui.renderImage->setPixmap(QPixmap::fromImage(scaled_img));
+*/
 }
 
 
@@ -66,43 +71,33 @@ void RayTraceWindows::startRender()
 
 	//////////////////////////////////////////////////////////////////////////
 	float vertexCount = renderThread->getPixel()->size();
-	QImage* img = new QImage(800,600, QImage::Format_RGB32);
+	QImage* img = new QImage(200,200, QImage::Format_RGBA8888);
 	int index = 0;
 	
 	//iterate over all pixels in the event
 	vector<RenderPixel*> *pixelsUpdate = renderThread->getPixel();
 
-	QPainter painter;
-	QPen pen;
-/*
+	int width = img->width();
+	int height = img->height();
 
+	QPixmap pixmap(width, height);
+	QPainter painter(&pixmap);
 	for (vector<RenderPixel*>::iterator itr = pixelsUpdate->begin();
 		itr != pixelsUpdate->end(); itr++)
 	{
 		RenderPixel* pixel = *itr;
-
-		pen.setColor(QColor(pixel->red, pixel->green, pixel->blue));
-		painter.setPen(pen);
-		painter.drawImage(pixel->x, pixel->y, *img);
+		painter.setPen(QColor(pixel->red, pixel->green, pixel->blue));
+		painter.drawPoint(pixel->x, pixel->y);
 		delete pixel;
 	}
-*/
-
-	for (int i = 0; i < 100; i++)
-	{
-		for (int j = 0; j < 100; j++)
-		{
-			//	pen.setColor(QColor(pixel->red, pixel->green, pixel->blue));
-			pen.setColor(Qt::GlobalColor::red);
-			painter.setPen(pen);
-			painter.drawImage(i, j, *img);
-		}
-	}
+	QFont f = painter.font();
+	f.setPixelSize(20);
+	painter.setFont(f);
+	painter.setPen(Qt::black);
+	painter.drawText(QRectF(0, 0, width, height), Qt::AlignCenter, "complete");
+	ui.renderImage->setPixmap(pixmap);
 	pixelsUpdate->clear();
 	delete pixelsUpdate;
-
-	//////////////////////////////////////////////////////////////////////////
-	ui.renderImage->setPixmap(QPixmap::fromImage(*img));
 
 }
 

@@ -30,7 +30,8 @@ public:
 
 	World* world;
 
-
+	int width;
+	int height;
 	vector<RenderPixel*> pixels;
 	long lastUpdateTime;
 };

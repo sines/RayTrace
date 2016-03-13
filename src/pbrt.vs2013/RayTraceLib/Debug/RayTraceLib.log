@@ -1,6 +1,20 @@
-﻿生成启动时间为 2016/3/11 20:46:12。
+﻿生成启动时间为 2016/3/13 19:20:54。
      1>项目“E:\WorkLaby\RayWindows\RayTrace\src\pbrt.vs2013\RayTraceLib\RayTraceLib.vcxproj”在节点 2 上(Build 个目标)。
-     1>Lib:
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\..\..\src\RayTraceLib /I..\..\..\src\RayTraceLib\Utilities /I..\..\..\src\RayTraceLib\World /I..\..\..\src\RayTraceLib\Tracers /I..\..\..\src\RayTraceLib\Materials /I..\..\..\src\RayTraceLib\Samplers /I"..\..\..\src\RayTraceLib\Geometric Objects" /I"..\..\..\src\RayTraceLib\Geometric Objects\Compound Objects" /I"..\..\..\src\RayTraceLib\Geometric Objects\Part Objects" /I"..\..\..\src\RayTraceLib\Geometric Objects\Triangles" /I"..\..\..\src\RayTraceLib\Geometric Objects\Primitives" /I..\..\..\src\RayTraceLib\build /I..\..\..\src\RayTraceWindows\src /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\RayTraceLib\World\World.cpp
+         World.cpp
+     1>e:\worklaby\raywindows\raytrace\src\raytracelib\utilities\rgbcolor.h(147): warning C4244: “return”: 从“double”转换到“float”，可能丢失数据
+     1>e:\worklaby\raywindows\raytrace\src\raytracelib\utilities\constants.h(27): warning C4305: “初始化”: 从“double”到“const float”截断
+     1>e:\worklaby\raywindows\raytrace\src\raytracelib\utilities\maths.h(115): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+     1>e:\worklaby\raywindows\raytrace\src\raytracelib\world\viewplane.h(86): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+     1>e:\worklaby\raywindows\raytrace\src\raytracelib\world\world.cpp(69): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+     1>e:\worklaby\raywindows\raytrace\src\raytracelib\world\world.cpp(83): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+     1>e:\worklaby\raywindows\raytrace\src\raytracelib\world\world.cpp(84): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+     1>e:\worklaby\raywindows\raytrace\src\raytracelib\world\world.cpp(91): warning C4244: “参数”: 从“const int”转换到“const float”，可能丢失数据
+     1>e:\worklaby\raywindows\raytrace\src\raytracelib\world\world.cpp(101): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+     1>e:\worklaby\raywindows\raytrace\src\raytracelib\world\world.cpp(181): warning C4244: “初始化”: 从“const double”转换到“float”，可能丢失数据
+     1>e:\worklaby\raywindows\raytrace\src\raytracelib\world\world.cpp(188): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+       Lib:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"..\..\..\lib\RayTraceLib.lib" /NOLOGO Debug\GeometricObject.obj
          Debug\Plane.obj
          Debug\Sphere.obj
@@ -32,4 +46,4 @@
 
 生成成功。
 
-已用时间 00:00:00.12
+已用时间 00:00:00.46

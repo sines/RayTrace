@@ -89,7 +89,7 @@ World::render_scene(void) const {
 		//	ray.o = Point3D(s * (c - hres / 2.0 + 0.5), s * (r - vres / 2.0 + 0.5), zw);
 		//	pixel_color = tracer_ptr->trace_ray(ray);
 			pixel_color /= vp.num_samples;
-			display_pixel(r, c, pixel_color);
+			display_pixel(r, c, red);
 		}	
 }  
 

@@ -4,8 +4,7 @@
 #include <QTextEdit>
 #include <QTextStream>
 #include <QFileDialog>
-#include <QtQuick/QSGGeometry>
-#include <QtQuick/QSGGeometryNode>
+#include <QPainter>
 RayTraceWindows::RayTraceWindows(QWidget *parent)
 	: QMainWindow(parent), world(NULL), renderThread(NULL)
 {
@@ -66,30 +65,44 @@ void RayTraceWindows::startRender()
 	world->render_scene();
 
 	//////////////////////////////////////////////////////////////////////////
-	QImage* img = new QImage;
-	float oriwidth = img->width() / 2;
-	float oriheight = img->height() / 2;
-	QImage scaled_img = img->scaled(oriwidth, oriheight, Qt::IgnoreAspectRatio);
-	ui.renderImage->setPixmap(QPixmap::fromImage(scaled_img));
-
 	float vertexCount = renderThread->getPixel()->size();
-	QSGGeometry* qsg = new QSGGeometry(QSGGeometry::defaultAttributes_ColoredPoint2D(), vertexCount);
+	QImage* img = new QImage(800,600, QImage::Format_RGB32);
 	int index = 0;
+	
+	//iterate over all pixels in the event
+	vector<RenderPixel*> *pixelsUpdate = renderThread->getPixel();
 
-	for (vector<RenderPixel*>::iterator it = renderThread->pixels.begin(); it != renderThread->pixels.end(); ++it)
+	QPainter painter;
+	QPen pen;
+/*
+
+	for (vector<RenderPixel*>::iterator itr = pixelsUpdate->begin();
+		itr != pixelsUpdate->end(); itr++)
 	{
-		qsg->vertexDataAsColoredPoint2D()[index].set((*it)->x, (*it)->y, (*it)->red, (*it)->green, (*it)->blue, 0);
-		index++;
+		RenderPixel* pixel = *itr;
+
+		pen.setColor(QColor(pixel->red, pixel->green, pixel->blue));
+		painter.setPen(pen);
+		painter.drawImage(pixel->x, pixel->y, *img);
+		delete pixel;
 	}
-	QByteArray photo;
-	QDataStream ds(&photo, QIODevice::WriteOnly);
-	uchar * data = static_cast<uchar *>(qsg->vertexData());
-	for (int i = 0; i < qsg->vertexCount(); i++)
+*/
+
+	for (int i = 0; i < 100; i++)
 	{
-		ds << data++;
+		for (int j = 0; j < 100; j++)
+		{
+			//	pen.setColor(QColor(pixel->red, pixel->green, pixel->blue));
+			pen.setColor(Qt::GlobalColor::red);
+			painter.setPen(pen);
+			painter.drawImage(i, j, *img);
+		}
 	}
-	bool readimage = img->loadFromData(photo);
-	ui.renderImage->setPixmap(QPixmap::fromImage(scaled_img));
+	pixelsUpdate->clear();
+	delete pixelsUpdate;
+
+	//////////////////////////////////////////////////////////////////////////
+	ui.renderImage->setPixmap(QPixmap::fromImage(*img));
 
 }
 

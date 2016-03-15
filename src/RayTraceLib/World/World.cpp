@@ -11,7 +11,6 @@
 // tracers
 
 #include "SingleSphere.h"
-#include "MultipleObjects.h"
 
 // utilities
 

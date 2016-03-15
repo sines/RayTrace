@@ -1,6 +1,6 @@
 #ifndef RAYTRACEWINDOWS_H
 #define RAYTRACEWINDOWS_H
-#include <QPlainTextEdit>
+#include <QtWidgets/QPlainTextEdit>
 
 #include <QtWidgets/QMainWindow>
 #include "ui_raytracewindows.h"

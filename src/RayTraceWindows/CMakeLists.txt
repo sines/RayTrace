@@ -18,6 +18,8 @@ include_add_by_dir(SOURCES_QRC)
 # qt
 ############################################################
 set(QT_QMAKE_EXECUTABLE ${QT_ROOT}/bin/qmake)
+set(CMAKE_PREFIX_PATH ${QT_ROOT})
+set(CAMKE_INSTALL_PREFIX ${QT_ROOT})
 set(CMAKE_MODULE_PATH "${QT_ROOT}/lib/cmake")
 find_package(Qt5Widgets)
 

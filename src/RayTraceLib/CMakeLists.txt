@@ -13,7 +13,7 @@ add_library(RayTraceLib STATIC ${All_Files})
 
 add_definitions("-DTIXML_USE_STL")
 add_definitions("-DHIDSDK_EXPORTS")
-add_definitions("-DOGREMAX_SHARED_LIBRARY_EXPORT")
+add_definitions("-DOGREMAX_STATIC_LIBRARY_EXPORT")
 add_definitions(-DUNICODE -D_UNICODE)
 LINK_DIRECTORIES("${PROJECT_SOURCE_DIR}/lib/")
 set(CMAKE_LINK_LIBRARY_SUFFIX "")

@@ -7,16 +7,18 @@
 #include <QPainter>
 #include <QImage>
 RayTraceWindows::RayTraceWindows(QWidget *parent)
-	: QMainWindow(parent), world(NULL), renderThread(NULL)
+	: QMainWindow(parent), world(NULL), renderThread(NULL), timerRender(0)
 {
 	ui.setupUi(this);
 	ui.statusBar->showMessage(tr("Ready"));
+	timerRender = new QTimer(this);
+	timerRender->setObjectName(QString::fromUtf8("timer1s"));
+
 	connect(ui.actionNew, SIGNAL(triggered()), this, SLOT(newFile()));
 	connect(ui.actionOpen, SIGNAL(triggered()), this, SLOT(openFile()));
 	connect(ui.actionAbout, SIGNAL(triggered()), this, SLOT(About()));
 	connect(ui.actionStart, SIGNAL(triggered()), this, SLOT(startRender()));
-
-
+	connect(timerRender, SIGNAL(timeout()), this, SLOT(OnRenderData()));
 /*
 	// default
 	QImage* img = new QImage;
@@ -36,16 +38,46 @@ RayTraceWindows::RayTraceWindows(QWidget *parent)
 */
 }
 
+//////////////////////////////////////////////////////////////////////////
+// GetInstance
+RayTraceWindows* RayTraceWindows::GetInstance()
+{
 
+	static RayTraceWindows* raytracewindows = new RayTraceWindows();
+	return raytracewindows;
+}
+//////////////////////////////////////////////////////////////////////////
+// ~RayTraceWindows
 RayTraceWindows::~RayTraceWindows()
 {
 
 	if (world != NULL)
+	{
 		delete world;
+	}
+
+	if (timerRender != NULL)
+	{
+		timerRender->stop();
+		disconnect(timerRender, SIGNAL(timeout()), this, SLOT(OnRenderData()));
+		delete timerRender;
+	}
+
+	// thread stop;
+	if (renderThread && renderThread->isRunning())
+	{
+		renderThread->stop();
+		renderThread->wait();
+	}
+
 
 	if (renderThread != NULL)
 		delete renderThread;
+
 }
+
+//////////////////////////////////////////////////////////////////////////
+// new file
 void RayTraceWindows::newFile()
 {
 	QString fileName = QFileDialog::getOpenFileName(this);
@@ -53,11 +85,15 @@ void RayTraceWindows::newFile()
 		loadFile(fileName);
 }
 
+//////////////////////////////////////////////////////////////////////////
+// openFile
 void RayTraceWindows::openFile()
 {
 	statusBar()->showMessage(tr("Open"), 2000);
 }
 
+//////////////////////////////////////////////////////////////////////////
+// start render
 void RayTraceWindows::startRender()
 {
 	world = new World;
@@ -66,46 +102,24 @@ void RayTraceWindows::startRender()
 	renderThread = new RenderThread(world);
 
 	world->paintArea = renderThread;
-
-	world->render_scene();
-
-	//////////////////////////////////////////////////////////////////////////
-	float vertexCount = renderThread->getPixel()->size();
-	QImage* img = new QImage(200,200, QImage::Format_RGBA8888);
-	int index = 0;
-	
-	//iterate over all pixels in the event
-	vector<RenderPixel*> *pixelsUpdate = renderThread->getPixel();
-
-	int width = img->width();
-	int height = img->height();
-
-	QPixmap pixmap(width, height);
-	QPainter painter(&pixmap);
-	for (vector<RenderPixel*>::iterator itr = pixelsUpdate->begin();
-		itr != pixelsUpdate->end(); itr++)
+	timerRender->start(30);
+	if (renderThread)
 	{
-		RenderPixel* pixel = *itr;
-		painter.setPen(QColor(pixel->red, pixel->green, pixel->blue));
-		painter.drawPoint(pixel->x, pixel->y);
-		delete pixel;
+		renderThread->start();
 	}
-	QFont f = painter.font();
-	f.setPixelSize(20);
-	painter.setFont(f);
-	painter.setPen(Qt::black);
-	painter.drawText(QRectF(0, 0, width, height), Qt::AlignCenter, "complete");
-	ui.renderImage->setPixmap(pixmap);
-	pixelsUpdate->clear();
-	delete pixelsUpdate;
 
 }
 
+//////////////////////////////////////////////////////////////////////////
+// about
 void RayTraceWindows::About()
 {
 	QMessageBox::about(this, tr("About Application"),
 		QString::fromLocal8Bit("实现自<<射线跟踪算法>>系列书籍 "));
 }
+
+//////////////////////////////////////////////////////////////////////////
+// loadfile
 void RayTraceWindows::loadFile(const QString &fileName)
 //! [42] //! [43]
 {
@@ -128,4 +142,19 @@ void RayTraceWindows::loadFile(const QString &fileName)
 #endif
 
 	statusBar()->showMessage(tr("File loaded"), 2000);
+}
+
+void RayTraceWindows::SetRenderImage(QPixmap& pixmap)
+{
+	if (!pixmap.isNull())
+	{
+		ui.renderImage->setPixmap(pixmap);
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////
+// OnRenderData
+void RayTraceWindows::OnRenderData()
+{
+	SetRenderImage(renderThread->pixmap);
 }

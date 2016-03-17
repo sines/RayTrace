@@ -10,6 +10,17 @@ include_add_by_dir(HEADERS)
 include_add_by_dir(WINHEADERS)
 add_library(RayTraceLib STATIC ${All_Files})
 
+############################################################
+# qt
+############################################################
+set(QT_QMAKE_EXECUTABLE ${QT_ROOT}/bin/qmake)
+set(CMAKE_PREFIX_PATH ${QT_ROOT})
+set(CAMKE_INSTALL_PREFIX ${QT_ROOT})
+set(CMAKE_MODULE_PATH "${QT_ROOT}/lib/cmake")
+find_package(Qt5Widgets)
+INCLUDE_DIRECTORIES(${QT_ROOT}/include)
+include_directories(${Qt5Widgets_INCLUDE_DIRS})
+INCLUDE_DIRECTORIES(${Qt5Core_INCLUDE_DIRS} ${Qt5Gui_INCLUDE_DIRS} ${Qt5Widgets_INCLUDE_DIRS} ${Qt5OpenGL_INCLUDE_DIRS} ${Qt5Xml_INCLUDE_DIRS})
 
 add_definitions("-DTIXML_USE_STL")
 add_definitions("-DHIDSDK_EXPORTS")

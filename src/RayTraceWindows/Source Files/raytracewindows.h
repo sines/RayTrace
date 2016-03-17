@@ -6,15 +6,23 @@
 #include "ui_raytracewindows.h"
 #include "World.h"
 #include "RenderThread.h"
+#include <QTimer>
 
 class RayTraceWindows : public QMainWindow
 {
 	Q_OBJECT
 
-public:
+private:
 	RayTraceWindows(QWidget *parent = 0);
 	~RayTraceWindows();
 
+
+public:
+	static RayTraceWindows* GetInstance(void);
+
+	void SetRenderImage(QPixmap& pixmap);
+protected slots:
+	void OnRenderData();
 private:
 	Ui::RayTraceWindowsClass ui;
 
@@ -35,6 +43,7 @@ private:
 protected:
 	World* world;
 	RenderThread* renderThread;
+	QTimer* timerRender;
 };
 
 #endif // RAYTRACEWINDOWS_H

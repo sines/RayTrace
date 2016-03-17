@@ -12,7 +12,6 @@
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
-	RayTraceWindows w;
-	w.show();
+	RayTraceWindows::GetInstance()->show();
 	return a.exec();
 }

@@ -23,6 +23,10 @@ public:
 	void SetRenderImage(QPixmap& pixmap);
 protected slots:
 	void OnRenderData();
+
+	void keyPressEvent(QKeyEvent * evt);
+	void keyReleaseEvent(QKeyEvent * evt);
+
 private:
 	Ui::RayTraceWindowsClass ui;
 
@@ -30,7 +34,6 @@ private:
 	QPlainTextEdit *textEdit;
 
 	void loadFile(const QString &fileName);
-
 	private slots:
 	// file
 		void newFile();
@@ -39,7 +42,7 @@ private:
 
 	// render
 		void startRender();
-
+		void loadImage(QString path = "../../../media/image/desktop.jpg");
 protected:
 	World* world;
 	RenderThread* renderThread;

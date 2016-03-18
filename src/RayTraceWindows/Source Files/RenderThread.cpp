@@ -18,14 +18,14 @@ RenderPixel::RenderPixel(int _x, int _y, int _red, int _green, int _blue)
 /********************* RenderThread *******************************************/
 /******************************************************************************/
 
-RenderThread::RenderThread(World* w) : world(w), terminate(false), width(0),
-height(0), lastUpdateTime(0), pixelsRendered(0), pixelsToRender(0),pixmap(QPixmap(200, 200)), painter(&pixmap)
+RenderThread::RenderThread(World* w) : world(w), terminate(false), height(w->vp.vres),
+width(w->vp.hres), lastUpdateTime(0), pixelsRendered(0), pixelsToRender(0), pixmap(QPixmap(width, height)), painter(&pixmap), complete(false)
 {
 	pixels.clear();
 }
 //////////////////////////////////////////////////////////////////////////
 // setPixel
-void RenderThread::setPixel(int x, int y, int red, int green, int blue)
+void RenderThread::SetPixel(int x, int y, int red, int green, int blue)
 {
 	if (pixelsToRender > pixelsRendered)
 	{
@@ -35,18 +35,34 @@ void RenderThread::setPixel(int x, int y, int red, int green, int blue)
 	}
 	else
 	{
+		complete = true;
 		stop();
 	}
 }
-
+void RenderThread::ClearState()
+{
+	complete = false;
+	terminate = false;
+	pixelsRendered = 0;
+	pixels.clear();
+	pixmap.fill(Qt::black);
+}
 //////////////////////////////////////////////////////////////////////////
 //	GetPixel
-vector<RenderPixel*> * RenderThread::getPixel()
+vector<RenderPixel*> * RenderThread::GetPixel()
 {
 	//copy rendered pixels into a new vector and reset
 	vector<RenderPixel*> *pixelsUpdate = new vector<RenderPixel*>(pixels);
 	return pixelsUpdate;
 }
+
+//////////////////////////////////////////////////////////////////////////
+// GetProcess
+float RenderThread::GetProcess()
+{
+	return (float)pixelsRendered / (float)pixelsToRender;
+}
+
 
 //////////////////////////////////////////////////////////////////////////
 //	NotifyCanvas
@@ -66,6 +82,7 @@ void RenderThread::OnExit()
 		delete world;
 
 	terminate = false;
+	complete = false;
 	width = 0;
 	height = 0;
 	lastUpdateTime = 0;
@@ -79,8 +96,9 @@ void *RenderThread::Entry()
 {
 	lastUpdateTime = 0;
 	pixelsToRender = world->vp.vres * world->vp.hres;
-	width = world->vp.vres;
-	height = world->vp.hres;
+	width = world->vp.hres;
+	height = world->vp.vres;
+	complete = false;
 	world->render_scene();
 	return NULL;
 }
@@ -90,18 +108,22 @@ void RenderThread::run()
 {
 	if (false == terminate)
 	{
+		ClearState();
 		Entry();
-
 		QFont f = painter.font();
 		f.setPixelSize(20);
 		painter.setFont(f);
 		painter.setPen(Qt::black);
-		painter.drawText(QRectF(0, 0, width, height), Qt::AlignCenter, "complete");
-	}	
+	}
+	terminate = false;
 }
 
+void RenderThread::start()
+{
+	terminate = false;
+	__super::start();
+}
 void RenderThread::stop()
 {
 	terminate = true;
-
 }

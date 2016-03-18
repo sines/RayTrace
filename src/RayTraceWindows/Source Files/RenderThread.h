@@ -21,27 +21,33 @@ class RenderThread : public QThread
 {
 public:
 	RenderThread(World* w);
-	virtual void *Entry();
-	virtual void OnExit();
-	virtual void setPixel(int x, int y, int red, int green, int blue);
+	virtual void	*Entry();
+	virtual void	OnExit();
+	virtual void	SetPixel(int x, int y, int red, int green, int blue);
 
-	vector<RenderPixel*> * getPixel();
+	vector<RenderPixel*> *	GetPixel();
 	void stop();
+	virtual	void start();
+public:
+	float	GetProcess();
+	inline	bool	IsComplete(){ return complete; };
+	QPixmap& GetPixMap(){ return pixmap; }
+	long GetWidth(){ return width; };
+	long GetHeight(){ return height; };
 
 private:
-	void NotifyCanvas();
-
+	void	NotifyCanvas();
+	void	ClearState();
 public:
-	virtual void run();
+	virtual void	run();
 
 private:
 	long pixelsRendered;
 	long pixelsToRender;
 	bool terminate;
-public:
-	
-	World* world;
+	bool complete;
 
+	World* world;
 	int width;
 	int height;
 	vector<RenderPixel*> pixels;

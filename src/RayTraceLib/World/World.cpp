@@ -74,7 +74,7 @@ World::render_scene(void) const {
 	for (int r = 0; r < vres; r++)			// up
 		for (int c = 0; c <= hres; c++)
 		{	// across 
-		pixel_color = red;
+		pixel_color = white;
 			for (int p = 0; p < n; p++)
 			{
 				for (int q = 0; q < n; q++)
@@ -85,10 +85,10 @@ World::render_scene(void) const {
 					pixel_color += tracer_ptr->trace_ray(ray);
 				}
 			}
-		//	ray.o = Point3D(s * (c - hres / 2.0 + 0.5), s * (r - vres / 2.0 + 0.5), zw);
-		//	pixel_color = tracer_ptr->trace_ray(ray);
+			ray.o = Point3D(s * (c - hres / 2.0 + 0.5), s * (r - vres / 2.0 + 0.5), zw);
+			pixel_color = tracer_ptr->trace_ray(ray);
 			pixel_color /= vp.num_samples;
-			display_pixel(r, c, red);
+			display_pixel(r, c, pixel_color);
 		}	
 }  
 
@@ -149,15 +149,15 @@ World::display_pixel(const int row, const int column, const RGBColor& raw_color)
    int x = column;
    int y = vp.vres - row - 1;
 
-   paintArea->setPixel(x, y, (int)(mapped_color.r * 255),
+   paintArea->SetPixel(x, y, (int)(mapped_color.r * 255),
                              (int)(mapped_color.g * 255),
                              (int)(mapped_color.b * 255));
 }
 
 void
 World::build(void) {
-	vp.set_hres(200);
-	vp.set_vres(200);
+	vp.set_hres(600);
+	vp.set_vres(400);
 	vp.set_pixel_size(1.0);
 	vp.set_gamma(1.0);
 	vp.set_num_samples(4);

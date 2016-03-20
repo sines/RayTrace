@@ -26,7 +26,7 @@
 
 // build functions
 
-//#include "BuildSingleSphere.cpp"
+#include "BuildSingleSphere.cpp"
 //#include "BuildMultipleObjects.cpp"
 //#include "BuildBBCoverPic.cpp"
 //#include "BuildFigure03.20.cpp"
@@ -154,8 +154,8 @@ World::display_pixel(const int row, const int column, const RGBColor& raw_color)
                              (int)(mapped_color.b * 255));
 }
 
-void
-World::build(void) {
+/*
+void World::build(void) {
 	vp.set_hres(600);
 	vp.set_vres(400);
 	vp.set_pixel_size(1.0);
@@ -169,6 +169,7 @@ World::build(void) {
 	sphere.set_radius(100);
 	sphere.set_color(background_color);
 }
+*/
 
 
 // ----------------------------------------------------------------------------- hit_bare_bones_objects

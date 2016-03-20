@@ -171,12 +171,12 @@
      <x>0</x>
      <y>0</y>
      <width>613</width>
-     <height>17</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>文件</string>
+     <string>File</string>
     </property>
     <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
@@ -184,7 +184,7 @@
    </widget>
    <widget class="QMenu" name="menuRender">
     <property name="title">
-     <string>渲染</string>
+     <string>Render</string>
     </property>
     <addaction name="actionStart"/>
     <addaction name="actionPause"/>
@@ -192,12 +192,12 @@
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
-     <string>视图</string>
+     <string>View</string>
     </property>
    </widget>
    <widget class="QMenu" name="menuAbout">
     <property name="title">
-     <string>关于</string>
+     <string>About</string>
     </property>
     <addaction name="actionAbout"/>
    </widget>
@@ -247,7 +247,7 @@
   </action>
   <action name="actionAbout">
    <property name="text">
-    <string>关于</string>
+    <string>About</string>
    </property>
   </action>
   <action name="actionSave">
@@ -263,7 +263,7 @@
   </action>
   <action name="actionStart">
    <property name="text">
-    <string>Render</string>
+    <string>Start</string>
    </property>
    <property name="statusTip">
     <string>开始</string>
@@ -274,7 +274,7 @@
   </action>
   <action name="actionPause">
    <property name="text">
-    <string>暂停</string>
+    <string>Puse</string>
    </property>
    <property name="statusTip">
     <string>暂停</string>
@@ -285,7 +285,7 @@
   </action>
   <action name="actionResume">
    <property name="text">
-    <string>恢复</string>
+    <string>Resume</string>
    </property>
    <property name="statusTip">
     <string>恢复</string>

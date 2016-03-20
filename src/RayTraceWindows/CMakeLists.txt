@@ -51,6 +51,5 @@ SET(QT_USE_QTMAIN TRUE)
 
 target_link_libraries(RayTraceWindows Qt5::Widgets)
 TARGET_LINK_LIBRARIES(RayTraceWindows RayTraceLib)
-
 set(CMAKE_LINK_LIBRARY_SUFFIX "")
 SET_TARGET_PROPERTIES (RayTraceWindows PROPERTIES WIN32_EXECUTABLE TRUE)

@@ -45,7 +45,7 @@ void RenderThread::ClearState()
 	terminate = false;
 	pixelsRendered = 0;
 	pixels.clear();
-	pixmap.fill(Qt::black);
+	pixmap.fill(QColor(world->background_color.r * 255, world->background_color.g * 255, world->background_color.b * 255));
 }
 //////////////////////////////////////////////////////////////////////////
 //	GetPixel

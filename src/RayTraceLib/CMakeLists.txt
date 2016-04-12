@@ -34,9 +34,9 @@ add_definitions(-DUNICODE -D_UNICODE)
 #LINK_DIRECTORIES("${PROJECT_SOURCE_DIR}/lib/")
 set(CMAKE_LINK_LIBRARY_SUFFIX "")
 
-#ADD_CUSTOM_COMMAND(
-#   TARGET RayTraceLib
-#    POST_BUILD
-#    COMMAND -E xcopy "${PROJECT_SOURCE_DIR}/bin/RayTraceLib.lib" "${PROJECT_SOURCE_DIR}/lib/RayTraceLib.lib"
-#	COMMENT "copying lib …"
-#)
+ADD_CUSTOM_COMMAND(
+   TARGET RayTraceLib
+    POST_BUILD
+    COMMAND copy "\"$(OutDir)\$(TargetFileName)\"" "\"${PROJECT_SOURCE_DIR}/lib/$(TargetFileName)\""
+	COMMENT "copying to directory lib …"
+)

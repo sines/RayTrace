@@ -99,7 +99,9 @@ void *RenderThread::Entry()
 	width = world->vp.hres;
 	height = world->vp.vres;
 	complete = false;
-	world->render_scene();
+
+	//world->render_scene();
+	world->get_camera()->render_scene(*world);
 	return NULL;
 }
 

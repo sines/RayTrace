@@ -20,6 +20,7 @@
 #include "GeometricObject.h"
 #include "Sphere.h"
 #include "Ray.h"
+#include "Camera.h"
 
 class RenderThread; 	//part of skeleton - wxRaytracer.h
 using namespace std;
@@ -63,10 +64,14 @@ class World{
 		ShadeRec									
 		hit_bare_bones_objects(const Ray& ray);
 
+		void set_camera(Camera* camera);
+
+		Camera* get_camera();
 // 		ShadeRec
 // 			hit_objects(const Ray& ray);
 	private:
-		
+		Camera*						camera_ptr;
+
 		void 
 		delete_objects(void);
 
@@ -80,4 +85,14 @@ World::add_object(GeometricObject* object_ptr) {
 	objects.push_back(object_ptr);	
 }
 
+// ------------------------------------------------------------------ set_camera
+inline void World::set_camera(Camera* camera)
+{
+	camera_ptr = camera;
+};
+
+inline Camera* World::get_camera()
+{
+	return camera_ptr;
+};
 #endif

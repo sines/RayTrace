@@ -17,7 +17,7 @@ Vector3D Pinhole::ray_direction(const Point2D& p)const{
 	return(dir);
 };
 
-void Pinhole::render_scene(const World& w){
+void Pinhole::render_scene(World& w){
 	RGBColor L;
 	ViewPlane vp(w.vp);
 	Ray ray;
@@ -39,7 +39,7 @@ void Pinhole::render_scene(const World& w){
 				pp.x = vp.s * (c -0.5 * vp.hres + sp.x);
 				pp.y = vp.s * (r - 0.5 * vp.vres + sp.y);
 				ray.d = ray_direction(pp);
-				L += w.tracer_ptr->trace_ray(ray, depth);
+				L += w.tracer_ptr->trace_ray(ray);
 			}
 
 			L /= vp.num_samples;

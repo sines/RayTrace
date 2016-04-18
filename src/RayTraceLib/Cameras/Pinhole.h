@@ -14,7 +14,7 @@ public:
 		clone(void) const;
 
 	Vector3D ray_direction(const Point2D& p)const;
-	virtual void render_scene(const World& w);
+	virtual void render_scene(World& w);
 
 	void set_view_distance(const float dis);
 private:

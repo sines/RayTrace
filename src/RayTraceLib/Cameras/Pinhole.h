@@ -10,9 +10,7 @@ public:
 	Pinhole();
 	~Pinhole();
 
-	virtual Pinhole*
-		clone(void) const;
-
+	virtual Pinhole* clone(void) const;
 	Vector3D ray_direction(const Point2D& p)const;
 	virtual void render_scene(World& w);
 

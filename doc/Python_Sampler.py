@@ -21,15 +21,27 @@ sampler = np.arange(num_sampler);
 pp_x = [];
 pp_y =[];
 
-#Hammersley
+subcell_width = 1.0 / np.square(num_sampler);
+#MultiJittered
 for c in hres:
     for v in vres:
+        for i in range(0,num_sampler):
+             for j in range(0, num_sampler):
+                p_x = (i * num_sampler + j) * subcell_width + np.random.uniform(0, subcell_width);
+                p_y =  (j * num_sampler + i) * subcell_width + np.random.uniform(0, subcell_width);
+                p_x = v - 0.5*width + p_x;
+                p_y = c - 0.5*width + p_y;
+                plt.scatter(p_x,p_y,color='black', s=0.5,alpha=1);
+        
+"""
+        # Hammersley
        for n in range(0,np.square(num_sampler)):
            fphi = phi(n);
            p_x = v - 0.5*width + float(n/num_sampler);
            p_y = c - 0.5*width + fphi;
            print('num_sampler: n=',n,"phi=", fphi);
            plt.scatter(p_x,p_y,color='black', s=0.5,alpha=1);
+"""
 
 """
            #
@@ -74,7 +86,7 @@ for p_x in pp_x:
     for p_y in pp_y:
         plt.scatter(p_x,p_y,color='red', s=8.0,alpha=1);
 
-plt.title("RayTracing -Sampler Hammersley");
+plt.title("RayTracing -Sampler MultiJittered");
 plt.grid();
 axes.xaxis.grid(color='r', linestyle='-', linewidth=1);
 axes.yaxis.grid(color='b', linestyle='-', linewidth=1);

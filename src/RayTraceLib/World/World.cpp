@@ -11,8 +11,12 @@
 // tracers
 
 #include "SingleSphere.h"
+#include "MultiJittered.h"
+
+// camera
 
 #include "Pinhole.h"
+#include "ThinLens.h"
 // utilities
 
 #include "Vector3D.h"

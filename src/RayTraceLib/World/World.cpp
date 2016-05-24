@@ -11,12 +11,16 @@
 // tracers
 
 #include "SingleSphere.h"
+#include "MultipleObjects.h"
+
+// sample
 #include "MultiJittered.h"
 
 // camera
 
 #include "Pinhole.h"
 #include "ThinLens.h"
+
 // utilities
 
 #include "Vector3D.h"
@@ -29,10 +33,14 @@
 
 #include "RenderThread.h"
 
+
+// camera
+#include "Pinhole.h"
+#include "Fisheye.h"
 // build functions
 
-#include "BuildSingleSphere.cpp"
-//#include "BuildMultipleObjects.cpp"
+//#include "BuildSingleSphere.cpp"
+#include "BuildMultipleObjects.cpp"
 //#include "BuildBBCoverPic.cpp"
 //#include "BuildFigure03.20.cpp"
 // -------------------------------------------------------------------- default constructor
@@ -86,21 +94,40 @@ World::render_scene(void) const {
 	for (int r = 0; r < vres; r++)			// up
 		for (int c = 0; c <= hres; c++)
 		{	// across 
-		pixel_color = white;
-			for (int p = 0; p < n; p++)
+		pixel_color = background_color;
+/*
+
+		for (int p = 0; p < vp.num_samples; p++)
+		{
+			PP_x = s * (c - hres / 2.0 + rand_float());
+			PP_y = s * (r - hres / 2.0 + rand_float());
+			ray.o = Point3D(PP_x, PP_y, zw);
+			pixel_color += tracer_ptr->trace_ray(ray);
+		}
+		display_pixel(r, c, pixel_color);
+*/
+
+		for (int p = 0; p < n; p++)
+		{
+			for (int q = 0; q < n; q++)
 			{
-				for (int q = 0; q < n; q++)
-				{
-					PP_x = vp.s *(c-0.5*vp.hres + (q+0.5)/n);
-					PP_y = vp.s *(r - 0.5*vp.vres + (p + 0.5)/n);
-					ray.o = Point3D(PP_x, PP_y, zw);
-					pixel_color += tracer_ptr->trace_ray(ray);
-				}
+				PP_x = s * (c - hres / 2.0 + (q+rand_float())/n);
+				PP_y = s * (r - hres / 2.0 + (p + rand_float()) / n);
+				ray.o = Point3D(PP_x, PP_y, zw);
+				pixel_color += tracer_ptr->trace_ray(ray);
 			}
-			ray.o = Point3D(s * (c - hres / 2.0 + 0.5), s * (r - vres / 2.0 + 0.5), zw);
-			pixel_color = tracer_ptr->trace_ray(ray);
-			pixel_color /= vp.num_samples;
-			display_pixel(r, c, pixel_color);
+		}
+
+		pixel_color /= vp.num_samples;
+		display_pixel(r, c, pixel_color);
+
+
+
+		/*
+		ray.o = Point3D(s * (c - hres / 2.0 + 0.5), s * (r - vres / 2.0 + 0.5), zw);
+		pixel_color = tracer_ptr->trace_ray(ray);
+		display_pixel(r, c, pixel_color);
+		*/
 		}	
 }  
 

@@ -156,10 +156,10 @@ void RayTraceWindows::SetRenderImage(QPixmap& pixmap)
 void RayTraceWindows::OnRenderData()
 {
 	SetRenderImage(renderThread->GetPixMap());
-	statusBar()->showMessage(tr("Rendering:") + QString::number(renderThread->GetProcess() * 100, 'g', 4) + "%");
+	statusBar()->showMessage(tr("Rendering:") + QString::number(renderThread->GetProcess() * 100, 'g', 4) + "%" + " Count:" + QString::number(renderThread->GetPixelsRed()));
 	if (1 == renderThread->IsComplete())
 	{
-		statusBar()->showMessage(tr("Rendering:Complete ") + QString::number(renderThread->GetWidth()) + "X" + QString::number(renderThread->GetHeight()));
+		statusBar()->showMessage(tr("Rendering:Complete ") + QString::number(renderThread->GetWidth()) + "X" + QString::number(renderThread->GetHeight()) + " Count:" + QString::number(renderThread->GetPixelsRed()));
 		renderThread->stop();
 		timerRender->stop();
 	}

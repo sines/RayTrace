@@ -20,6 +20,7 @@
 
 #include "Pinhole.h"
 #include "ThinLens.h"
+#include "SteroCamera.h"
 
 // utilities
 

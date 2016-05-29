@@ -31,6 +31,8 @@ public:
 public:
 	float	GetProcess();
 	inline	bool	IsComplete(){ return complete; };
+	int long GetPixelsRed(){ return pixelsRendered; };
+
 	QPixmap& GetPixMap(){ return pixmap; }
 	long GetWidth(){ return width; };
 	long GetHeight(){ return height; };

@@ -6,7 +6,7 @@
 /******************************************************************************/
 /********************* RenderPixel ********************************************/
 /******************************************************************************/
-
+typedef pair<int, RenderPixel*> PixelPair;
 
 RenderPixel::RenderPixel(int _x, int _y, int _red, int _green, int _blue)
 	: x(_x), y(_y), red(_red), green(_green), blue(_blue)
@@ -22,6 +22,10 @@ RenderThread::RenderThread(World* w) : world(w), terminate(false), height(w->vp.
 width(w->vp.hres), lastUpdateTime(0), pixelsRendered(0), pixelsToRender(0), pixmap(QPixmap(width, height)), painter(&pixmap), complete(false)
 {
 	pixels.clear();
+	pixels_index.clear();
+	pixelsToRender = world->vp.vres * world->vp.hres;
+	width = world->vp.hres;
+	height = world->vp.vres;
 }
 //////////////////////////////////////////////////////////////////////////
 // setPixel
@@ -29,7 +33,30 @@ void RenderThread::SetPixel(int x, int y, int red, int green, int blue)
 {
 	if (pixelsToRender > pixelsRendered)
 	{
-		pixels.push_back(new RenderPixel(x, y, red, green, blue));
+		bool push = true;
+		int index = x*width + y;
+
+		std::map<int, RenderPixel*>::iterator result_it;
+		result_it = pixels.find(index);
+		if (result_it != pixels.end()) {
+
+			float redf = (float)red / 255;
+			float greenf = (float)green / 255;
+			float bluef = (float)blue / 255;
+
+			result_it->second->red = (1 - redf)*result_it->second->red + redf *redf* red;
+			result_it->second->green = (1 - greenf)*result_it->second->green + greenf *greenf* green;
+			result_it->second->blue = (1 - bluef)*result_it->second->blue + bluef *bluef* blue;
+
+			push = false;
+		}
+		if (push)
+		{
+			
+			pixels.insert(PixelPair(index,new RenderPixel(x, y, red, green, blue)));
+			pixels_index.push_back(index);
+		}
+
 		NotifyCanvas();
 		pixelsRendered++;
 	}
@@ -39,20 +66,23 @@ void RenderThread::SetPixel(int x, int y, int red, int green, int blue)
 		stop();
 	}
 }
+
+
 void RenderThread::ClearState()
 {
 	complete = false;
 	terminate = false;
 	pixelsRendered = 0;
 	pixels.clear();
+	pixels_index.clear();
 	pixmap.fill(QColor(world->background_color.r * 255, world->background_color.g * 255, world->background_color.b * 255));
 }
 //////////////////////////////////////////////////////////////////////////
 //	GetPixel
-vector<RenderPixel*> * RenderThread::GetPixel()
+std::map<int, RenderPixel*>* RenderThread::GetPixel()
 {
 	//copy rendered pixels into a new vector and reset
-	vector<RenderPixel*> *pixelsUpdate = new vector<RenderPixel*>(pixels);
+	std::map<int, RenderPixel*>* pixelsUpdate = new std::map<int, RenderPixel*>(pixels);
 	return pixelsUpdate;
 }
 
@@ -69,7 +99,8 @@ float RenderThread::GetProcess()
 void RenderThread::NotifyCanvas()
 {
 	//iterate over all pixels in the event
-	RenderPixel* pixel = pixels[pixels.size()-1];
+	int index = pixels_index[pixelsRendered];
+	RenderPixel* pixel = pixels[index];
 	painter.setPen(QColor(pixel->red, pixel->green, pixel->blue));
 	painter.drawPoint(pixel->x, pixel->y);
 }
@@ -89,15 +120,13 @@ void RenderThread::OnExit()
 	pixelsRendered = 0;
 	pixelsToRender = 0;
 	pixels.clear();
+	pixels_index.clear();
 
 }
 
 void *RenderThread::Entry()
 {
 	lastUpdateTime = 0;
-	pixelsToRender = world->vp.vres * world->vp.hres;
-	width = world->vp.hres;
-	height = world->vp.vres;
 	complete = false;
 
 	//world->render_scene();
@@ -129,3 +158,9 @@ void RenderThread::stop()
 {
 	terminate = true;
 }
+
+void
+RenderThread::addlayer()
+{
+	pixelsRendered = 0;
+};

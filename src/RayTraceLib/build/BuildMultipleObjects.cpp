@@ -1,13 +1,15 @@
+//////////////////////////////////////////////////////////////////////////
+// build
 const int NUM_SAMPLES = 16;
-const int VRES = 400;
-const int HRES = 400;
-const int PIXEL_GAP = 5;
-const int STERO_ANGLE = 0.75;
+const double VRES = 400;
+const double HRES = 400;
+const double PIXEL_GAP = 25;
+const double STERO_ANGLE = 0.75;
 
 //////////////////////////////////////////////////////////////////////////
 
 void World::build(void) {
-	vp.set_hres(2 * HRES + PIXEL_GAP);
+	vp.set_hres(HRES);
 	vp.set_vres(VRES);
 	vp.set_pixel_size(0.5);
 	vp.num_samples = NUM_SAMPLES;
@@ -33,7 +35,7 @@ void World::build(void) {
 	
 	Plane* plane_ptr = new Plane(Point3D(0), Normal(0, 0, 1));
 	plane_ptr->set_color(0.3, 0.3, 0.3);	// dark green
-	add_object(plane_ptr);
+	//add_object(plane_ptr);
 
 
 	//////////////////////////////////////////////////////////////////////////
@@ -54,13 +56,13 @@ void World::build(void) {
 	StereoCamera* stero_ptr = new StereoCamera;
 	stero_ptr->set_leftcamera(leftpinhole_ptr);
 	stero_ptr->set_rightcamera(rightpinhole_ptr);
-	stero_ptr->set_useviewing(parallel);
+	stero_ptr->set_useviewing(transverse);
 	stero_ptr->set_pixel_gap(PIXEL_GAP);
 	stero_ptr->set_eye(0, 0, 500);
 	stero_ptr->set_lookat(0, 0, -500);
 	stero_ptr->compute_uvw();
 	stero_ptr->set_stereo_angle(STERO_ANGLE);
 	stero_ptr->setup_cameras();
-	camera_ptr = stero_ptr;
 
+	camera_ptr = stero_ptr;
 }

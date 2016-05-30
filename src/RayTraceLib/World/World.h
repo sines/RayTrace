@@ -10,10 +10,7 @@
 // 3 	These operations wouldn't work because the world is self-referencing:
 //	 	the Tracer base class contains a pointer to the world. If we wrote a correct copy constructor for the 
 // 	  	Tracer class, the World copy construtor would call itself recursively until we ran out of memory. 
-
-
 #include <vector>
-
 #include "ViewPlane.h"
 #include "RGBColor.h"
 #include "Tracer.h"
@@ -22,7 +19,8 @@
 #include "Ray.h"
 #include "Camera.h"
 
-class RenderThread; 	//part of skeleton - wxRaytracer.h
+
+class RenderThread;
 using namespace std;
 
 class World{
@@ -32,7 +30,7 @@ class World{
 		RGBColor					background_color;
 		Tracer*						tracer_ptr;
 		Sphere 						sphere;		// for Chapter 3 only
-		vector<GeometricObject*>	objects;		
+		std::vector<GeometricObject*>	objects;
 		
 		RenderThread* 				paintArea; 	//connection to skeleton - wxRaytracer.h
 			
@@ -49,6 +47,9 @@ class World{
 		void 					
 		build(void);
 
+		void 
+			addlayer(void);
+		
 		void 												
 		render_scene(void) const;
 						
@@ -95,4 +96,7 @@ inline Camera* World::get_camera()
 {
 	return camera_ptr;
 };
+
+
+
 #endif

@@ -34,7 +34,9 @@ class Tracer {
 
 		virtual RGBColor	
 		trace_ray(const Ray ray, const int depth) const;
-				
+		
+		virtual bool 
+			trace_ray(const Ray& ray, RGBColor& color) const;
 	protected:
 	
 		World* world_ptr;

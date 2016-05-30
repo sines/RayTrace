@@ -26,6 +26,7 @@ void StereoCamera::setup_cameras(void)
 {
 	double r = eye.distance(lookat);
 	double x = r * tan(0.5*beta*PI_ON_180);
+
 	left_camera_ptr->set_eye(eye - x *u);
 	left_camera_ptr->set_lookat(lookat - x*u);
 	left_camera_ptr->compute_uvw();
@@ -38,16 +39,18 @@ void StereoCamera::setup_cameras(void)
 void StereoCamera::render_scene(World& w)
 {
 	ViewPlane vp = w.vp;
+
 	int hres = vp.hres;
 	int vres = vp.vres;
-
 	double r = eye.distance(lookat);
 	double x = r * tan(0.5* beta * PI_ON_180);
+
 	if (viewing == parallel)
 	{
 		// left view on left
-		left_camera_ptr->render_stereo(w, -x, 0);
-
+		left_camera_ptr->render_stereo(w, x, 0);
+		
+		w.addlayer();
 		// right view on right
 		right_camera_ptr->render_stereo(w, -x, pixel_gap);
 
@@ -58,8 +61,9 @@ void StereoCamera::render_scene(World& w)
 		// right view on left
 		right_camera_ptr->render_stereo(w, -x, 0);
 
+		w.addlayer();
 		// left view on right
-		left_camera_ptr->render_stereo(w, -x, pixel_gap);
+		left_camera_ptr->render_stereo(w, x, pixel_gap);
 	}
 
 }

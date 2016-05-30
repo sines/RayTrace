@@ -44,6 +44,10 @@ Tracer::trace_ray(const Ray ray, const int depth) const {
 	return (black);
 }
 
-
+// -------------------------------------------------------------------- trace_ray
+bool
+Tracer::trace_ray(const Ray& ray, RGBColor& color) const{
+	return (false);
+};
 
 

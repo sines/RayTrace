@@ -251,4 +251,12 @@ World::delete_objects(void) {
 	objects.erase (objects.begin(), objects.end());
 }
 
+void
+World::addlayer(void)
+{
+	if (paintArea)
+	{
+		paintArea->addlayer();
+	}
+};
 

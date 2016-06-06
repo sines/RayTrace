@@ -79,7 +79,7 @@ def map_samples_to_unit_disk(vec_x=0,vec_y=0):
 
 if True:
     center = vector3(20.0, 20.0, 20.0);
-    R = 10;
+    R = 2;
 
     subcell_width = 1.0 / ((float)(R));
     subcell_height = 1.0 / ((float)(R));
@@ -98,8 +98,8 @@ if True:
 # True
 if True :
     file = open(r'E:\\test.txt', 'r')
-    center = vector3(20.0, -10.0, -100.0);
-    r = 1.0
+    center = vector3(20.1, -10.0, -100.0);
+    r = 1
     subcell = 1.0 / ((float)(r));
     a_disk=[]
     s_data=[]
@@ -135,7 +135,9 @@ if True :
         plot_x.append(pd.pos.x);
         plot_y.append(pd.pos.y);
 
-    plt.plot(plot_x, plot_y);
+    plt.scatter(plot_x, plot_y,s=1,color='black',marker='.');
+    #plt.scatter(plot_x, plot_y);
+
     plt.grid();
 
 
@@ -149,11 +151,11 @@ if True :
         plot_x.append(pd.x);
         plot_y.append(pd.y);
 
-    plt.scatter(plot_x, plot_y);
+    plt.scatter(plot_x, plot_y,s=1,color='black',marker='.');
     plt.grid();
 
-    plt.xticks(np.arange(-5, 5, 1));
-    plt.yticks(np.arange(-5, 5, 1));
+    plt.xticks(np.arange(-np.pi, np.pi, np.pi*0.2));
+    plt.yticks(np.arange(-np.pi, np.pi, np.pi*0.2));
 
 
     axes = plt.gca();
@@ -181,11 +183,11 @@ if True :
     radii = 10*np.random.rand(N)
 
     for pd in a_disk:
-       plt.scatter(pd.phi, pd.r)
+       plt.scatter(pd.phi, pd.r,s=1,color='black',marker='.')
 
 
     plt.xticks(np.arange(0, np.pi*2, np.pi/4));
-    plt.yticks(np.arange(0, 10, 1));
+    plt.yticks(np.arange(0, np.pi, 1));
     axes = plt.gca();
     axes.xaxis.grid(color='green');
     axes.yaxis.grid(color='red');

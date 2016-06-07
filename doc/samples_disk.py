@@ -96,11 +96,12 @@ if True:
 
 # False
 # True
+Radius = 1;
+
 if True :
     file = open(r'E:\\test.txt', 'r')
     center = vector3(20.1, -10.0, -100.0);
-    r = 1
-    subcell = 1.0 / ((float)(r));
+    subcell = 1.0;
     a_disk=[]
     s_data=[]
     for line in  file:
@@ -115,9 +116,10 @@ if True :
             #print(len(parts));
             #print(parts);
             #print(txtdata.index, 'pos_x=',txtdata.pos.x, 'pos_y=', txtdata.pos.y, 'pos_z=',txtdata.pos.z, 'rot_x=',txtdata.rot.x,'rot_y= ',txtdata.rot.y, 'rot_z=',txtdata.rot.z, end='');
-            x = float((float(txtdata.pos.x) - float(center.x)) *subcell);
-            y = float((float(txtdata.pos.y)- float(center.y)) *subcell);
-            if x >=-1 and x <=1 and y >=-1 and y <= 1 :
+            
+            x = float((float(txtdata.pos.x) - float(center.x)));
+            y = float((float(txtdata.pos.y)- float(center.y)));
+            if np.abs(x)<Radius and np.abs(y) < Radius :
                 data = map_samples_to_unit_disk(x, y);
                 a_disk.append(data);
                 print (data.x, data.y, data.phi, data.r)
@@ -154,8 +156,8 @@ if True :
     plt.scatter(plot_x, plot_y,s=1,color='black',marker='.');
     plt.grid();
 
-    plt.xticks(np.arange(-np.pi, np.pi, np.pi*0.2));
-    plt.yticks(np.arange(-np.pi, np.pi, np.pi*0.2));
+    plt.xticks(np.arange(-np.pi*0.5, np.pi*0.5, np.pi*0.1));
+    plt.yticks(np.arange(-np.pi*0.5, np.pi*0.5, np.pi*0.1));
 
 
     axes = plt.gca();
@@ -187,7 +189,7 @@ if True :
 
 
     plt.xticks(np.arange(0, np.pi*2, np.pi/4));
-    plt.yticks(np.arange(0, np.pi, 1));
+    plt.yticks(np.arange(0, Radius, Radius*0.2));
     axes = plt.gca();
     axes.xaxis.grid(color='green');
     axes.yaxis.grid(color='red');

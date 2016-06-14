@@ -48,7 +48,10 @@ add_definitions("-DTIXML_USE_STL")
 add_definitions(-DUNICODE -D_UNICODE)
 add_definitions(/Zc:wchar_t-)
 SET(QT_USE_QTMAIN TRUE)
-
+#
+SET_TARGET_PROPERTIES (RayTraceWindows PROPERTIES LINK_FLAGS "/level='requireAdministrator'")
+SET_TARGET_PROPERTIES (RayTraceWindows PROPERTIES WIN32_EXECUTABLE TRUE)
+#
 target_link_libraries(RayTraceWindows Qt5::Widgets)
 TARGET_LINK_LIBRARIES(RayTraceWindows RayTraceLib)
 set(CMAKE_LINK_LIBRARY_SUFFIX "")

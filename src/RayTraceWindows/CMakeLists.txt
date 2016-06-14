@@ -48,7 +48,9 @@ add_definitions("-DTIXML_USE_STL")
 add_definitions(-DUNICODE -D_UNICODE)
 add_definitions(/Zc:wchar_t-)
 SET(QT_USE_QTMAIN TRUE)
-#
+# vs 2008
+# SET_TARGET_PROPERTIES(MXUI PROPERTIES LINK_FLAGS "/MANIFESTUAC:\"level='requireAdministrator'  uiAccess='false'")
+# vs 2013
 SET_TARGET_PROPERTIES (RayTraceWindows PROPERTIES LINK_FLAGS "/level='requireAdministrator'")
 SET_TARGET_PROPERTIES (RayTraceWindows PROPERTIES WIN32_EXECUTABLE TRUE)
 #
